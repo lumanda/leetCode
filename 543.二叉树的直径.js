@@ -25,11 +25,10 @@ var diameterOfBinaryTree = function(root) {
         var tempRight = 0; // 右子树的深度
         tempLeft = maxDepth(root.left);
         tempRight = maxDepth(root.right);
-        // 这里的1 是递归里加一，后面减一也只是减了一个一
-        if (tempLeft + tempRight + 1 > max) max = tempLeft + tempRight + 1
+        if (tempLeft + tempRight > max) max = tempLeft + tempRight
         return Math.max(tempLeft, tempRight) + 1;
     })(root)
-    return max - 1;
+    return max;
 };
 // @lc code=end
 
@@ -57,3 +56,15 @@ var diameterOfBinaryTree = function(root) {
 //     })(root)
 //     return max;
 // };
+
+// var diameterOfBinaryTree = function(root) {
+//     var max = 0;
+//      (function maxDepth(root) {
+//          if (root == null) return 0;
+//          var tempLeft = maxDepth(root.left); // 左子树的深度
+//          var tempRight = maxDepth(root.right); // 右子树的深度
+//          if (tempLeft + tempRight + 1 > max) max = tempLeft + tempRight + 1
+//          return Math.max(tempLeft, tempRight) + 1;
+//      })(root)
+//      return max - 1;
+//  };
