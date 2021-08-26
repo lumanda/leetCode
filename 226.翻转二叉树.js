@@ -18,7 +18,31 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-
+    if (!root) return null;
+    let left = invertTree(root.right);
+    let right = invertTree(root.left);
+    root.left = left
+    root.right = right;
+    return root
 };
 // @lc code=end
 
+
+// var invertTree = function(root) {
+//     if (!root) return null;
+//     var temp = root.left;
+//     root.left = root.right;
+//     root.right = temp;
+//     invertTree(root.left);
+//     invertTree(root.right);
+//     return root
+// };
+
+
+// var invertTree = function(root) {
+//     if (!root) return null;
+//     var temp = root.left 
+//     root.left = invertTree(root.right);
+//     root.right = invertTree(temp);
+//     return root
+// };
