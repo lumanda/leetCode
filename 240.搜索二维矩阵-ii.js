@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2022-02-09 15:49:54
- * @LastEditTime: 2022-02-09 16:31:25
+ * @LastEditTime: 2022-02-09 16:32:52
  */
 /*
  * @lc app=leetcode.cn id=240 lang=javascript
@@ -24,12 +24,12 @@ var searchMatrix = function(matrix, target) {
   var y = matrix[0].length - 1;
   var x = 0;
   while(y>=0&&x<=xMax){
-    if( matrix[x][y] == target){
-      return true;
-    }else if(target < matrix[x][y]){
+    if(target < matrix[x][y]){
       y--
     }else if(target > matrix[x][y]){
       x++
+    }else {
+      return true;
     }
   }
   return false;
