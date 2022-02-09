@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2022-02-09 16:40:54
- * @LastEditTime: 2022-02-09 16:58:43
+ * @LastEditTime: 2022-02-09 17:11:04
  */
 /*
  * @lc app=leetcode.cn id=876 lang=javascript
@@ -26,12 +26,9 @@
 // 快慢指针
 var middleNode = function(head) {
   var fast = low = head;
-  while(fast.next!==null&&fast.next.next!==null){
+  while(fast!==null&&fast.next!==null){
     fast = fast.next.next;
     low = low.next;
-  }
-  if(fast.next&&fast.next.next==null){
-    return low.next;
   }
   return low;
 };
