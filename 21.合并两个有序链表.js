@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2022-02-09 17:15:13
- * @LastEditTime: 2022-02-11 11:17:43
+ * @LastEditTime: 2022-02-11 11:22:56
  */
 /*
  * @lc app=leetcode.cn id=21 lang=javascript
@@ -27,25 +27,18 @@
 var mergeTwoLists = function(l1, l2) {
   var vNode = new ListNode();
   var vNodeTail = vNode;
-  var first = l1;
-  var second = l2;
-  while(first && second){
-    if(first.val<=second.val){
-      vNodeTail.next = first;
+  while(l1 && l2){
+    if(l1.val<=l2.val){
+      vNodeTail.next = l1;
       vNodeTail = vNodeTail.next;
-      first = first.next;
+      l1 = l1.next;
     }else{
-      vNodeTail.next = second;
+      vNodeTail.next = l2;
       vNodeTail = vNodeTail.next;
-      second = second.next;
+      l2 = l2.next;
     }
   }
-  if(!first){
-    vNodeTail.next = second;
-  }
-  if(!second){
-    vNodeTail.next = first;
-  }
+  vNodeTail.next = l1 ? l1: l2;
   return vNode.next;
 };
 // @lc code=end
