@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2022-02-21 19:30:20
- * @LastEditTime: 2022-02-21 20:15:39
+ * @LastEditTime: 2022-02-21 21:00:27
  */
 /*
  * @lc app=leetcode.cn id=2 lang=javascript
@@ -24,50 +24,67 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function(l1, l2) {
+ var addTwoNumbers = function(l1, l2) {
   var re = 0; // 进位 
-  var sum = 0;
-  var yu = 0; // 余数
-  var head = l2;
-  var l2tail;  // l2 的尾节点
-  var l1tail;  // l2 的尾节点对应的l1的节点
-  while(l1 && l2){
-    sum = l1.val + l2.val + re;
+  var head = new ListNode();
+  var l3 = head;
+  while(l1 || l2){
+    var sum = (l1?l1.val:0)+ (l2?l2.val:0) + re;
     re = Math.floor(sum/10);
-    yu = sum%10;
-    l2.val = yu;
-    if(l2.next === null){
-      l2tail = l2; // 保存尾节点
-      l1tail = l1;
-    }
-    l2 = l2.next;
-    l1 = l1.next; 
+    l3.next = new ListNode(sum%10);
+    l3 = l3.next;
+    if(l2) l2 = l2.next;
+    if(l1) l1 = l1.next; 
   }
-  if(l2 === null){
-    l2tail.next = l1;
-    l2 = l1;
-    l1tail.next = null;
-    l1 = null;
+  if(re){
+    l3.next = new ListNode(re);
   }
-  if(l1 === null){
-    while(re!==0&&l2){
-      sum = l2.val + re
-      re = Math.floor(sum/10);
-      yu = sum%10;
-      l2.val = yu;
-      if(l2.next === null){
-        l2tail = l2;
-      }
-      l2 = l2.next;
-    }
-    if(re === 0){
-      return head
-    }
-    if(l2===null){
-      l2tail.next = new ListNode(re);
-      return head
-    }
-  }
+  return head.next;
 };
+// var addTwoNumbers = function(l1, l2) {
+//   var re = 0; // 进位 
+//   var sum = 0;
+//   var yu = 0; // 余数
+//   var head = l2;
+//   var l2tail;  // l2 的尾节点
+//   var l1tail;  // l2 的尾节点对应的l1的节点
+//   while(l1 && l2){
+//     sum = l1.val + l2.val + re;
+//     re = Math.floor(sum/10);
+//     yu = sum%10;
+//     l2.val = yu;
+//     if(l2.next === null){
+//       l2tail = l2; // 保存尾节点
+//       l1tail = l1;
+//     }
+//     l2 = l2.next;
+//     l1 = l1.next; 
+//   }
+//   if(l2 === null){
+//     l2tail.next = l1;
+//     l2 = l1;
+//     l1tail.next = null;
+//     l1 = null;
+//   }
+//   if(l1 === null){
+//     while(re!==0&&l2){
+//       sum = l2.val + re
+//       re = Math.floor(sum/10);
+//       yu = sum%10;
+//       l2.val = yu;
+//       if(l2.next === null){
+//         l2tail = l2;
+//       }
+//       l2 = l2.next;
+//     }
+//     if(re === 0){
+//       return head
+//     }
+//     if(l2===null){
+//       l2tail.next = new ListNode(re);
+//       return head
+//     }
+//   }
+// };
 // @lc code=end
 
