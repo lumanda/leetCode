@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2022-03-01 14:55:28
- * @LastEditTime: 2022-03-01 16:08:55
+ * @LastEditTime: 2022-03-01 16:16:14
  */
 /*
  * @lc app=leetcode.cn id=328 lang=javascript
@@ -23,37 +23,59 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-
-var oddEvenList = function(head) {
-  // 新建两个节点链表的头
-  var odd = new ListNode();
-  var oddTail = odd; // 偶数指针
-  var even = new ListNode();
-  var evenTail = even; // 奇数指针
-
-  // 原链表指针
-  var p = head;
-  var i = true;
-
-  while(p){
-      var temp = p.next;
-      // 奇数
-      if(i){
-          oddTail.next = p;
-          oddTail = p;
-      }else{
-          evenTail.next = p;
-          evenTail = p;
+ var oddEvenList = function(head) {
+  // 分成奇偶双链，最后偶连奇，
+  if(head == null || head.next == null) {
+      return head;
+  } else {
+      var odd = head;
+      var even = head.next;
+      var evenHead = even;
+      // 这里是参考别人的，属实滴水不漏
+      while (even&&even.next) {
+         odd.next = even.next;
+         odd = odd.next;
+         even.next = odd.next;
+         even = even.next;
       }
-      i=!i;
-      p = temp;
+      odd.next = evenHead;
   }
-  // 这里最为关键，要将偶数的尾巴置为null
-  evenTail.next = null;
-  oddTail.next = even.next;
-
-  return odd.next;
+  return head;
 };
+
+
+
+
+// var oddEvenList = function(head) {
+//   // 新建两个节点链表的头
+//   var odd = new ListNode();
+//   var oddTail = odd; // 偶数指针
+//   var even = new ListNode();
+//   var evenTail = even; // 奇数指针
+
+//   // 原链表指针
+//   var p = head;
+//   var i = true;
+
+//   while(p){
+//       var temp = p.next;
+//       // 奇数
+//       if(i){
+//           oddTail.next = p;
+//           oddTail = p;
+//       }else{
+//           evenTail.next = p;
+//           evenTail = p;
+//       }
+//       i=!i;
+//       p = temp;
+//   }
+//   // 这里最为关键，要将偶数的尾巴置为null
+//   evenTail.next = null;
+//   oddTail.next = even.next;
+
+//   return odd.next;
+// };
 
 
 // var oddEvenList = function(head) {
