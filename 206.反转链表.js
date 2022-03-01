@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2021-12-07 11:29:17
- * @LastEditTime: 2022-03-01 10:22:23
+ * @LastEditTime: 2022-03-01 10:44:52
  */
 /*
  * @lc app=leetcode.cn id=206 lang=javascript
@@ -23,21 +23,33 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
-  var firstNode = null;
-  (function reverse(head){
-      if(head == null) return null;
-      var node = reverse(head.next);
-      if(node){
-          head.next = null;
-          node.next = head;
-      }else{
-          firstNode = head; 
-      }
-      return head;
-  })(head);
-  return firstNode;
+ var reverseList = function(head) {
+  var tail = null;
+  var p = head;
+  while(p){
+      var temp = p.next;
+      p.next = tail;
+      tail = p;
+      p = temp;
+  }
+  return tail
 };
+
+// var reverseList = function(head) {
+//   var firstNode = null;
+//   (function reverse(head){
+//       if(head == null) return null;
+//       var node = reverse(head.next);
+//       if(node){
+//           head.next = null;
+//           node.next = head;
+//       }else{
+//           firstNode = head; 
+//       }
+//       return head;
+//   })(head);
+//   return firstNode;
+// };
 
 
 // var reverseList = function(head) {
