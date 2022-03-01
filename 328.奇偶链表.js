@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2022-03-01 14:55:28
- * @LastEditTime: 2022-03-01 15:58:35
+ * @LastEditTime: 2022-03-01 16:08:55
  */
 /*
  * @lc app=leetcode.cn id=328 lang=javascript
@@ -23,6 +23,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+
 var oddEvenList = function(head) {
   // 新建两个节点链表的头
   var odd = new ListNode();
@@ -32,19 +33,19 @@ var oddEvenList = function(head) {
 
   // 原链表指针
   var p = head;
-  var i = 1;
+  var i = true;
 
   while(p){
       var temp = p.next;
       // 奇数
-      if(i%2 ==1){
+      if(i){
           oddTail.next = p;
           oddTail = p;
       }else{
           evenTail.next = p;
           evenTail = p;
       }
-      i++;
+      i=!i;
       p = temp;
   }
   // 这里最为关键，要将偶数的尾巴置为null
