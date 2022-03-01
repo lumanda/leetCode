@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2021-12-07 11:29:17
- * @LastEditTime: 2021-12-07 13:14:18
+ * @LastEditTime: 2022-03-01 10:22:23
  */
 /*
  * @lc app=leetcode.cn id=206 lang=javascript
@@ -24,26 +24,43 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-  // 极端情况 空链表 一个节点 两个节点
-  if(head==null) return null;
-  if(head.next==null) return head;
-  
-  let left = head;
-  let curr = head.next;
-  let right = head.next.next;
-  // 处理头指针的反转
-  head.next = null;
-  while(right!=null){
-    curr.next = left;
-    left = curr;
-    curr = right;
-    right = right.next;
-  }
-  // 最后收尾
-  // 两个节点
-  curr.next = left;
-  return curr;
-  
+  var firstNode = null;
+  (function reverse(head){
+      if(head == null) return null;
+      var node = reverse(head.next);
+      if(node){
+          head.next = null;
+          node.next = head;
+      }else{
+          firstNode = head; 
+      }
+      return head;
+  })(head);
+  return firstNode;
 };
+
+
+// var reverseList = function(head) {
+//   // 极端情况 空链表 一个节点 两个节点
+//   if(head==null) return null;
+//   if(head.next==null) return head;
+  
+//   let left = head;
+//   let curr = head.next;
+//   let right = head.next.next;
+//   // 处理头指针的反转
+//   head.next = null;
+//   while(right!=null){
+//     curr.next = left;
+//     left = curr;
+//     curr = right;
+//     right = right.next;
+//   }
+//   // 最后收尾
+//   // 两个节点
+//   curr.next = left;
+//   return curr;
+  
+// };
 // @lc code=end
 
