@@ -3,7 +3,7 @@
  * @version: data
  * @Author: @zhanghuiyong
  * @Date: 2022-03-02 17:39:17
- * @LastEditTime: 2022-03-02 17:58:10
+ * @LastEditTime: 2022-03-02 18:01:02
  */
 /*
  * @lc app=leetcode.cn id=19 lang=javascript
@@ -44,7 +44,7 @@ var removeNthFromEnd = function(head, n) {
       }
   }
   // 针对尾部的处理
-  slow.next = slow.next.next
+  slow.next =slow.next?slow.next.next:null;
   return head;
 };
 // @lc code=end
